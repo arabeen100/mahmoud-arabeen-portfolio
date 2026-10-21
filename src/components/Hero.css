@@ -1,0 +1,184 @@
+.hero {
+  position: relative;
+  padding-top: 107px;
+  overflow-x: clip;
+}
+
+/* Ambient glow behind the avatar */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 213px;
+  left: 50%;
+  width: 760px;
+  height: 760px;
+  translate: -50% -50%;
+  background: radial-gradient(
+    closest-side,
+    /* rgba(45, 212, 191, 0.2), */ rgba(45, 212, 191, 0.2),
+    /*    rgba(99, 102, 241, 0.11) 55%, */ rgba(99, 102, 241, 0.11) 55%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero__portrait {
+  position: relative;
+  width: 213px;
+  height: 213px;
+}
+
+.hero__avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  /*   background: linear-gradient(135deg, #2dd4bf, #6366f1);
+ */
+  background: linear-gradient(135deg, #2dd4bf, #6366f1);
+  overflow: hidden;
+}
+
+/* Dashed orbit ring with a glowing dot travelling around it */
+.hero__orbit {
+  position: absolute;
+  inset: -24px;
+  border: 1px dashed var(--orbit);
+  border-radius: 50%;
+  animation: orbit 36s linear infinite;
+  pointer-events: none;
+}
+
+.hero__orbit::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  border-radius: 50%;
+  background: #2dd4bf;
+  /*   box-shadow: 0 0 12px 3px rgba(45, 212, 191, 0.7);
+ */
+  box-shadow: 0 0 12px 3px rgba(45, 212, 191, 0.7);
+}
+
+@keyframes orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__orbit {
+    animation: none;
+  }
+}
+
+.hero__avatar img {
+  width: 100%;
+  height: 100%;
+}
+
+.hero__title {
+  margin-top: 43px;
+  font-size: clamp(2rem, 9vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.125;
+}
+
+.hero__highlight {
+  background-image: linear-gradient(95deg, #2dd4bf, #6366f1, #2dd4bf);
+  background-size: 200% 100%;
+  animation: shimmer 6s linear infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero__intro {
+  max-width: 672px;
+  margin-top: 38px;
+  color: var(--muted);
+  font-size: clamp(1rem, 2.6vw, 1.1875rem);
+  font-weight: 300;
+  line-height: 27px;
+  text-wrap: balance;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 52px;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* Each swap of the rotating word fades and rises in */
+.hero__word {
+  display: inline-block;
+  animation:
+    shimmer 6s linear infinite,
+    word-in 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes word-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.35em);
+    filter: blur(8px);
+  }
+}
+
+/* Staggered entrance on load */
+.hero__portrait,
+.hero__title,
+.hero__intro,
+.hero__actions {
+  animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.hero__title {
+  animation-delay: 0.12s;
+}
+
+.hero__intro {
+  animation-delay: 0.24s;
+}
+
+.hero__actions {
+  animation-delay: 0.36s;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__highlight,
+  .hero__word,
+  .hero__portrait,
+  .hero__title,
+  .hero__intro,
+  .hero__actions {
+    animation: none;
+  }
+}

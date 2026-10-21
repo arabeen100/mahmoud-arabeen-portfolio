@@ -1,0 +1,100 @@
+/* ---------- Dot grid ---------- */
+.dots {
+  position: absolute;
+  z-index: 0;
+  width: 300px;
+  height: 240px;
+  pointer-events: none;
+  background-image: radial-gradient(circle, var(--dot) 1.2px, transparent 1.7px);
+  background-size: 18px 18px;
+}
+
+.dots--tl {
+  top: 0;
+  left: 0;
+  -webkit-mask-image: radial-gradient(ellipse at top left, #000 0%, transparent 72%);
+  mask-image: radial-gradient(ellipse at top left, #000 0%, transparent 72%);
+}
+
+.dots--tr {
+  top: 0;
+  right: 0;
+  -webkit-mask-image: radial-gradient(ellipse at top right, #000 0%, transparent 72%);
+  mask-image: radial-gradient(ellipse at top right, #000 0%, transparent 72%);
+}
+
+.dots--bl {
+  bottom: 0;
+  left: 0;
+  -webkit-mask-image: radial-gradient(ellipse at bottom left, #000 0%, transparent 72%);
+  mask-image: radial-gradient(ellipse at bottom left, #000 0%, transparent 72%);
+}
+
+.dots--br {
+  right: 0;
+  bottom: 0;
+  -webkit-mask-image: radial-gradient(ellipse at bottom right, #000 0%, transparent 72%);
+  mask-image: radial-gradient(ellipse at bottom right, #000 0%, transparent 72%);
+}
+
+@media (max-width: 700px) {
+  .dots {
+    width: 150px;
+    height: 120px;
+  }
+}
+
+/* ---------- Corner "+" marks ---------- */
+.corner-marks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.cm {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  color: var(--mark);
+}
+
+.cm::before,
+.cm::after {
+  content: '';
+  position: absolute;
+  background: currentColor;
+}
+
+.cm::before {
+  top: 50%;
+  right: 0;
+  left: 0;
+  height: 1px;
+}
+
+.cm::after {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+}
+
+.cm--tl {
+  top: var(--cm-offset);
+  left: var(--cm-offset);
+}
+
+.cm--tr {
+  top: var(--cm-offset);
+  right: var(--cm-offset);
+}
+
+.cm--bl {
+  bottom: var(--cm-offset);
+  left: var(--cm-offset);
+}
+
+.cm--br {
+  right: var(--cm-offset);
+  bottom: var(--cm-offset);
+}

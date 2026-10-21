@@ -1,0 +1,341 @@
+:root {
+  /* Dark theme (default) */
+  --bg: #0f1115;
+  --bg-rgb: 22 21 19;
+  --surface: #191919;
+  --surface-raised: #1d1c1a;
+  --surface-hover: #1e1c1b;
+  --card: #2a2a2a;
+  --text: #ffffff;
+  --muted: #c5c5c5;
+  --subtle: #8491a0;
+  --border: rgba(255, 255, 255, 0.08);
+  --chip-bg: rgba(255, 255, 255, 0.03);
+
+  --header-bg: rgba(34, 34, 34, 0.7);
+  --header-shadow: rgba(0, 0, 0, 0.1);
+  --hairline: rgba(255, 255, 255, 0.2);
+  --hairline-soft: rgba(255, 255, 255, 0.16);
+  --hover-border: rgba(255, 255, 255, 0.3);
+  --dot: rgba(255, 255, 255, 0.3);
+  --mark: rgba(255, 255, 255, 0.38);
+  --orbit: rgba(255, 255, 255, 0.2);
+  --shadow-hover: rgba(0, 0, 0, 0.45);
+  --title-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+  --tech-logo-filter: none;
+  --card-ring: none;
+
+  /* Blueprint grid: indigo lines, teal spotlight */
+  --bp-minor: rgba(129, 140, 248, 0.055);
+  --bp-major: rgba(129, 140, 248, 0.1);
+  --bp-hot: rgba(45, 212, 191, 0.34);
+  --grain-opacity: 0.07;
+  --mono: ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace;
+
+  --gradient-warm: linear-gradient(180deg, #2dd4bf, #0d9488);
+  --gradient-cool: linear-gradient(180deg, #818cf8, #4338ca);
+  --gradient-accent: linear-gradient(95deg, #2dd4bf, #6366f1);
+
+  --container: 810px;
+  --gutter: 24px;
+  --header-height: 82px;
+
+  font-family: 'Poppins', system-ui, sans-serif;
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --bg: #fafafa;
+  --bg-rgb: 250 250 250;
+  --surface: #ffffff;
+  --surface-raised: #fcfcfc;
+  --surface-hover: #f3faf9;
+  --card: #ffffff;
+  --text: #17181c;
+  --muted: #4b5262;
+  --subtle: #5f6a7a;
+  --border: rgba(23, 24, 28, 0.1);
+  --chip-bg: rgba(23, 24, 28, 0.04);
+
+  --header-bg: rgba(255, 255, 255, 0.72);
+  --header-shadow: rgba(23, 24, 28, 0.08);
+  --hairline: rgba(23, 24, 28, 0.18);
+  --hairline-soft: rgba(23, 24, 28, 0.12);
+  --hover-border: rgba(23, 24, 28, 0.3);
+  --dot: rgba(23, 24, 28, 0.26);
+  --mark: rgba(23, 24, 28, 0.4);
+  --orbit: rgba(23, 24, 28, 0.2);
+  --shadow-hover: rgba(23, 24, 28, 0.16);
+  --title-shadow: none;
+  --tech-logo-filter: invert(1);
+  --card-ring: 0 0 0 1px var(--border), 0 6px 20px rgba(23, 24, 28, 0.05);
+
+  /* Blueprint grid: indigo lines, teal spotlight */
+  --bp-minor: rgba(67, 56, 202, 0.07);
+  --bp-major: rgba(67, 56, 202, 0.12);
+  --bp-hot: rgba(15, 118, 110, 0.45);
+  --grain-opacity: 0.06;
+
+  /* Darker stops so gradient text stays readable on light backgrounds */
+  --gradient-warm: linear-gradient(180deg, #14b8a6, #0f766e);
+  --gradient-cool: linear-gradient(180deg, #6366f1, #3730a3);
+  --gradient-accent: linear-gradient(95deg, #14b8a6, #4f46e5);
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 2px solid #818cf8;
+  outline-offset: 3px;
+}
+
+.container {
+  width: min(var(--container), 100% - 2 * var(--gutter));
+  margin-inline: auto;
+}
+
+.section {
+  scroll-margin-top: var(--header-height);
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.section-title--warm {
+  background-image: var(--gradient-warm);
+}
+
+.section-title--cool {
+  background-image: var(--gradient-cool);
+}
+
+.container--wide {
+  width: min(960px, 100% - 2 * var(--gutter));
+  margin-inline: auto;
+}
+
+/* ---------- Buttons ---------- */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 63px;
+  padding-inline: 28px;
+  border: 2px solid var(--text);
+  border-radius: 999px;
+  font-size: 1.3125rem;
+  font-weight: 600;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    transform 0.2s;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button--solid {
+  padding-inline: 30px;
+  background: var(--text);
+  color: var(--bg);
+}
+
+.button--solid:hover {
+  background: var(--muted);
+  border-color: var(--muted);
+}
+
+.button--outline {
+  background: transparent;
+  color: var(--text);
+}
+
+.button--outline:hover {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.button--sm {
+  height: 48px;
+  padding-inline: 24px;
+  font-size: 1rem;
+}
+
+/* ---------- Eyebrow label ---------- */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--gradient-accent);
+}
+
+/* ---------- Scroll reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---------- Utilities ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Section heading with floating drawing label ---------- */
+.section-head {
+  position: relative;
+}
+
+.section-head__label,
+.contact__label {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-bottom: 4px;
+  transform: translateX(-50%);
+  color: var(--subtle);
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.section-head__label::after,
+.contact__label::after {
+  content: '_';
+  margin-left: 2px;
+  animation: blink 1.1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-head__label::after,
+  .contact__label::after {
+    animation: none;
+  }
+}
+
+/* ---------- Button shine ---------- */
+.button--solid {
+  position: relative;
+  overflow: hidden;
+}
+
+.button--solid::after {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 -60%;
+  width: 40%;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255, 255, 255, 0.55),
+    transparent
+  );
+  transform: skewX(-18deg);
+  transition: left 0.7s ease;
+  pointer-events: none;
+}
+
+.button--solid:hover::after {
+  left: 130%;
+}

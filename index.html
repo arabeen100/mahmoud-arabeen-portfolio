@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script>
+      // Apply the saved theme before first paint to avoid a flash.
+      try {
+        var t = localStorage.getItem('theme')
+        if (t === 'light' || t === 'dark')
+          document.documentElement.dataset.theme = t
+      } catch (e) {}
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mahmoud Samy Arabeen | Frontend Engineer</title>
+    <meta
+      name="description"
+      content="Portfolio of Mahmoud Samy Arabeen, Frontend Engineer specializing in React.js, Next.js and TypeScript."
+    />
+    <link rel="canonical" href="https://mahmoud-arabeen.vercel.app/" />
+
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Mahmoud Samy Arabeen | Frontend Engineer"
+    />
+    <meta
+      property="og:description"
+      content="Frontend Engineer specializing in React.js, Next.js and TypeScript. Selected projects and experience."
+    />
+    <meta property="og:url" content="https://mahmoud-arabeen.vercel.app/" />
+    <meta
+      property="og:image"
+      content="https://mahmoud-arabeen.vercel.app/og-image.png"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
